@@ -1,4 +1,4 @@
 <?php
 
-require "array-data.php";   // получаем массив с данными
+require "lib.php";   // получаем массив с данными
 
