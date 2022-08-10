@@ -77,15 +77,3 @@ $uniqueArray = array_filter($inputArray, function ($key, $value) use ($ids) {
 
 consoleLog("Method 3, multiline style ", $uniqueArray);
 
-
-/**
- * @param $note
- * @param $data
- * @return void
- *
- * Имя функции согласно PSR-1, и в стиле javaScript
- */
-function consoleLog($note, $data)
-{
-    echo PHP_EOL, $note, PHP_EOL, print_r($data), '--', PHP_EOL;
-}
