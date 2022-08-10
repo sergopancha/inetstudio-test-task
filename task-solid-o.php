@@ -1,5 +1,7 @@
 <?php
 
+// решение полностью не реализовано
+
 class SomeObject {
     protected $name;
 
@@ -22,6 +24,11 @@ class SomeObjectsHandler {
 
         return $handlers;
     }
+
+    public function setHandler(string $name, array $object): array {
+
+    }
+
 }
 
 $objects = [
@@ -30,4 +37,3 @@ $objects = [
 ];
 
 $soh = new SomeObjectsHandler();
-$soh->handleObjects($objects);
