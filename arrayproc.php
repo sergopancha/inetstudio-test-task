@@ -13,7 +13,7 @@ $inputArray = [
  * Способ 1.
  *
  * Делаем фильтрацию массива через callback-функцию.
- * Для фильтра используем ключа 'id'
+ * Для фильтра используем значение ключа 'id'
  */
 
 $uniqueArray =  [];
@@ -23,7 +23,7 @@ $uniqueArray = array_filter($inputArray, function ($value) use (&$used) {
     return $used[$key] = true;
 });
 
-echo "Method 1",PHP_EOL, print_r($uniqueArray), '--',PHP_EOL;
+consoleLog("Method 1", $uniqueArray);
 
 /**
  * Способ 2.
@@ -44,10 +44,7 @@ echo "Method 1",PHP_EOL, print_r($uniqueArray), '--',PHP_EOL;
 // *** В ОДНУ СТРОКУ КОДА
 $uniqueArray = [];
 $uniqueArray = array_intersect_key($inputArray, array_unique( array_column($inputArray, 'id') ) );
-
-echo "Method 2, inline style ",PHP_EOL, print_r($uniqueArray), '--',PHP_EOL;
-print_r($uniqueArray);
-
+consoleLog("Method 2, inline style ",$uniqueArray);
 
 
 // *** В ДВЕ СТРОКИ КОДА
@@ -55,8 +52,7 @@ $uniqueArray = [];
 
 $tempArray = array_unique(array_column($inputArray, 'id' ));
 $uniqueArray = array_intersect_key($inputArray, $tempArray );
-
-echo "Method 2, multiline style ",PHP_EOL, print_r($uniqueArray), '--',PHP_EOL;
+consoleLog("Method 2, multiline style ", $uniqueArray);
 
 /**
  * Способ 3
@@ -68,16 +64,18 @@ echo "Method 2, multiline style ",PHP_EOL, print_r($uniqueArray), '--',PHP_EOL;
 
 $uniqueArray = [];
 
-$ids = array_column($inputArray, 'id');
-$ids = array_unique($ids);
-$uniqueArray = array_filter($inputArray, function ($key, $value) use ($ids) {
+// *** почти в одну строку кода
+$ids = array_unique( array_column($inputArray, 'id') );
+$uniqueArray = array_filter($inputArray, function ($key, $value) use ( $ids ) {
     return in_array($value, array_keys($ids));
 }, ARRAY_FILTER_USE_BOTH);
 
-echo "Method 3, inline style ",PHP_EOL, print_r($uniqueArray), '--',PHP_EOL;
+consoleLog("Method 3, inline style ",$uniqueArray);
 
 $uniqueArray = [];
 
+
+// *** подробно расписываем промежуточные операции
 $ids = array_column($inputArray, 'id');
 $ids = array_unique($ids);
 $uniqueArray = array_filter($inputArray, function ($key, $value) use ($ids) {
